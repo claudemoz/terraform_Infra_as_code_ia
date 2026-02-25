@@ -43,3 +43,12 @@ module "storage" {
   container_name      = "data"
   tags                = local.tags
 }
+
+module "monitoring" {
+  source              = "./modules/monitoring"
+  project             = var.project
+  env                 = var.env
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tags                = local.tags
+}
