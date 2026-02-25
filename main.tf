@@ -33,3 +33,13 @@ module "compute" {
   ssh_public_key_path = var.ssh_public_key_path
   tags                = local.tags
 }
+
+module "storage" {
+  source              = "./modules/storage"
+  project             = var.project
+  env                 = var.env
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  container_name      = "data"
+  tags                = local.tags
+}

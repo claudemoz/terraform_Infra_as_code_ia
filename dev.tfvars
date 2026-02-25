@@ -1,5 +1,6 @@
 project             = "azurevm"
 env                 = "dev"
-location            = "Switzerland North"
+location            = "Italy North"
 admin_username      = "azureuser"
 ssh_public_key_path = "~/.ssh/id_rsa.pub"
+container_name = "data"
