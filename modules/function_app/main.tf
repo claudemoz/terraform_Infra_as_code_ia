@@ -23,11 +23,24 @@ resource "azurerm_function_app" "func" {
   location                   = var.location
   resource_group_name        = var.resource_group_name
   app_service_plan_id        = azurerm_service_plan.plan.id
-  storage_account_name       = azurerm_storage_account.func_storage.name
+  storage_account_name       = var.storage_account_name
   storage_account_access_key = azurerm_storage_account.func_storage.primary_access_key
   version                    = "~4"
+
+   app_settings = {
+    "VISION_ENDPOINT" = var.vision_endpoint
+    "VISION_KEY"      = var.vision_key
+    "AzureWebJobsStorage" = var.storage_account_access_key
+    "FUNCTIONS_WORKER_RUNTIME" = "python"
+  }
+
   identity {
     type = "SystemAssigned"
   }
+
+  depends_on = [
+    azurerm_service_plan.plan,
+    azurerm_storage_account.func_storage
+  ]
   tags = var.tags
 }

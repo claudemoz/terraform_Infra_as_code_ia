@@ -70,6 +70,12 @@ module "function" {
   location            = var.location
   resource_group_name = azurerm_resource_group.rg.name
   tags                = local.tags
+
+  storage_account_name       = module.storage.storage_account_name
+  storage_account_access_key = module.storage.primary_access_key
+
+  vision_endpoint  = module.cognitive.cognitive_service_endpoint
+  vision_key      = module.cognitive.cognitive_service_key
 }
 
 module "keyvault" {
