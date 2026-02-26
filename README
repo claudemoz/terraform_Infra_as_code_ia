@@ -8,3 +8,5 @@ terraform workspace list
 # Supprimer le workspace dev (doit être sur un autre workspace pour supprimer)
 terraform workspace select default
 terraform workspace delete dev
+
+az cognitiveservices account purge --name cog-azurevm-dev --resource-group rg-azurevm-dev --location italynorth

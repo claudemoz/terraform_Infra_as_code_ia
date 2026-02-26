@@ -52,3 +52,31 @@ module "monitoring" {
   resource_group_name = azurerm_resource_group.rg.name
   tags                = local.tags
 }
+
+module "cognitive" {
+  source              = "./modules/cognitive_service"
+  project             = var.project
+  env                 = var.env
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "S1"
+  tags                = local.tags
+}
+
+module "function" {
+  source              = "./modules/function_app"
+  project             = var.project
+  env                 = var.env
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tags                = local.tags
+}
+
+module "keyvault" {
+  source              = "./modules/key_vault"
+  project             = var.project
+  env                 = var.env
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  tags                = local.tags
+}
